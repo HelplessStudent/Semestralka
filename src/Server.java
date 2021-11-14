@@ -1,5 +1,7 @@
 import java.io.*;
 import java.net.*;
+
+
 class Server {    public static void main(String args[]) throws Exception
 {
     DatagramSocket serverSocket = new DatagramSocket(9876);
@@ -13,9 +15,11 @@ class Server {    public static void main(String args[]) throws Exception
         System.out.println("RECEIVED: " + sentence);
         InetAddress IPAddress = receivePacket.getAddress();
         int port = receivePacket.getPort();
-        String capitalizedSentence = sentence.toUpperCase();
-        sendData = capitalizedSentence.getBytes();
+        //String capitalizedSentence = sentence.toUpperCase();
+        sendData = sentence.getBytes();
         DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, port);
-        serverSocket.send(sendPacket);                }
+        serverSocket.send(sendPacket); 
+        sentence = "";              
+     }
 }
 }
